@@ -57,3 +57,4 @@ ORDER BY [Name] ASC;
 SELECT ProductID, [Name], NULLIF(Color, 'Red')
 FROM Production.Product
 WHERE Color IS NOT NULL;
+
