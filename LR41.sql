@@ -1,6 +1,6 @@
--- 1. Показать Фамилию Имя и Отчество самого молодого сотрудника
--- (Таблицы HumanResources.Employee и Person.Person).
--- Показать поля FirstName, MiddleName, LastName.
+-- 1. РџРѕРєР°Р·Р°С‚СЊ Р¤Р°РјРёР»РёСЋ РРјСЏ Рё РћС‚С‡РµСЃС‚РІРѕ СЃР°РјРѕРіРѕ РјРѕР»РѕРґРѕРіРѕ СЃРѕС‚СЂСѓРґРЅРёРєР°
+-- (РўР°Р±Р»РёС†С‹ HumanResources.Employee Рё Person.Person).
+-- РџРѕРєР°Р·Р°С‚СЊ РїРѕР»СЏ FirstName, MiddleName, LastName.
 SELECT FirstName, MiddleName, LastName
 FROM Person.Person
 WHERE BusinessEntityID =
@@ -13,9 +13,9 @@ WHERE BusinessEntityID =
 				FROM HumanResources.Employee
 			)
     );
--- 2. Определить количество сотрудников и город, в
--- котором проживает максимальное число сотрудников
--- (Таблица Person.[Address]).
+-- 2. РћРїСЂРµРґРµР»РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ Рё РіРѕСЂРѕРґ, РІ
+-- РєРѕС‚РѕСЂРѕРј РїСЂРѕР¶РёРІР°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
+-- (РўР°Р±Р»РёС†Р° Person.[Address]).
 SELECT City, COUNT(*) AS LivingPersonCount
 FROM Person.[Address]
 WHERE City IS NOT NULL
@@ -32,9 +32,9 @@ HAVING COUNT(*) =
 			)
 		AS MaxLivingPersonCount
 	);
--- 3. Показать категорию (ProductSubcategoryID) товаров, для 
--- которой существует более 7 размеров (Таблица Production.Product). 
--- Показать поля [Name], Size и ProductSubcategoryID.
+-- 3. РџРѕРєР°Р·Р°С‚СЊ РєР°С‚РµРіРѕСЂРёСЋ (ProductSubcategoryID) С‚РѕРІР°СЂРѕРІ, РґР»СЏ 
+-- РєРѕС‚РѕСЂРѕР№ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р±РѕР»РµРµ 7 СЂР°Р·РјРµСЂРѕРІ (РўР°Р±Р»РёС†Р° Production.Product). 
+-- РџРѕРєР°Р·Р°С‚СЊ РїРѕР»СЏ [Name], Size Рё ProductSubcategoryID.
 SELECT Product1.ProductSubcategoryID
 FROM Production.Product AS Product1
 WHERE Product1.ProductSubcategoryID IS NOT NULL
@@ -47,9 +47,9 @@ AND (
 		Product2.ProductSubcategoryID
 	) > 7
 GROUP BY ProductSubcategoryID;
--- 4. Показать товары, цена которых равна максимальной цене
--- товара из той же подкатегории (Таблица Production.Product). 
--- Показать поля [Name], ListPrice и ProductSubcategoryID.
+-- 4. РџРѕРєР°Р·Р°С‚СЊ С‚РѕРІР°СЂС‹, С†РµРЅР° РєРѕС‚РѕСЂС‹С… СЂР°РІРЅР° РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ С†РµРЅРµ
+-- С‚РѕРІР°СЂР° РёР· С‚РѕР№ Р¶Рµ РїРѕРґРєР°С‚РµРіРѕСЂРёРё (РўР°Р±Р»РёС†Р° Production.Product). 
+-- РџРѕРєР°Р·Р°С‚СЊ РїРѕР»СЏ [Name], ListPrice Рё ProductSubcategoryID.
 SELECT Product1.[Name]
 	, Product1.ListPrice
 	, Product1.ProductSubcategoryID
@@ -66,9 +66,9 @@ JOIN
 AS Product2
 ON Product1.ProductSubcategoryID = Product2.ProductSubcategoryID
 AND Product1.ListPrice = Product2.MaxListPrice;
--- 5. Показать товары, цена которых больше средней цены 
--- в любом размере (Таблица Production.Product). Показать 
--- поля [Name], Size и ListPrice.
+-- 5. РџРѕРєР°Р·Р°С‚СЊ С‚РѕРІР°СЂС‹, С†РµРЅР° РєРѕС‚РѕСЂС‹С… Р±РѕР»СЊС€Рµ СЃСЂРµРґРЅРµР№ С†РµРЅС‹ 
+-- РІ Р»СЋР±РѕРј СЂР°Р·РјРµСЂРµ (РўР°Р±Р»РёС†Р° Production.Product). РџРѕРєР°Р·Р°С‚СЊ 
+-- РїРѕР»СЏ [Name], Size Рё ListPrice.
 SELECT [Name]
 	, Size
 	, ListPrice
